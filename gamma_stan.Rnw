@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\begin{document}
+
+<<>>=                                      #standard setup for Stan
+library(rstan)
+rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores())
+@
+
+Use the \texttt{read.csv()} function to read the \texttt{gamma\_stan.csv} dataset.
+<<>>=                                   #read the .csv file containing the data
+df = read.csv()
+@
+
+Assign the column for your group to a vector called \textt{y}
+
+Assign an integer called \texttt{N} to \texttt{length(y)}
+
+<<eval=FALSE>>=
+y =                    ################
+  
+N =                    ################
+
+<<>>=
+stanfit = stan("gamma.stan")             #call stan to fit the model
+
+print(stanfit)                           #print a summary of the results
+@
+
+<<eval=TRUE>>=
+
+pd=extract(stanfit)       #extract the posterior draw values
+
+str(pd)                   #show the structure of the posterior draw
+
+@
+
+<<>>=
+print(get_stanmodel(stanfit))
+@
+
+<<>>=
+Sys.info()[["user"]]
+@
+\end{document}
